@@ -44,14 +44,16 @@ class SportsListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val binding = FragmentSportsListBinding.bind(view)
 
+
         // Initialize the adapter and set it to the RecyclerView.
         val adapter = SportsAdapter {
             // Update the user selected sport as the current sport in the shared viewmodel
             // This will automatically update the dual pane content
             sportsViewModel.updateCurrentSport(it)
             // Navigate to the details screen
-            val action = SportsListFragmentDirections.actionSportsListFragmentToNewsFragment()
-            this.findNavController().navigate(action)
+//            val action = SportsListFragmentDirections.actionSportsListFragmentToNewsFragment()
+//            this.findNavController().navigate(action)
+            binding.slidingPaneLayout.openPane()
         }
         binding.recyclerView.adapter = adapter
         adapter.submitList(sportsViewModel.sportsData)
